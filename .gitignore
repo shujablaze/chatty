@@ -1,0 +1,23 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+front-end/chatty/node_modules/
+front-end/chatty/.pnp
+front-end/chatty.pnp.js
+
+# testing
+front-end/chatty/coverage
+
+# production
+front-end/chatty/build
+
+# misc
+front-end/chatty/.DS_Store
+front-end/chatty/.env.local
+front-end/chatty/.env.development.local
+front-end/chatty/.env.test.local
+front-end/chatty/.env.production.local
+
+front-end/chatty/npm-debug.log*
+front-end/chatty/yarn-debug.log*
+front-end/chatty/yarn-error.log*
