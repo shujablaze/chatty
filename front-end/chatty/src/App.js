@@ -1,24 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router,Route, Routes } from 'react-router-dom';
+import { createContext, useEffect , useState } from 'react';
+import Authentication from './pages/common/Authentication';
+import Dashboard from './pages/common/Dashboard';
+import Navbar from './components/Navbar';
+
+export const screenSizeProvider = createContext(true)
 
 function App() {
+  const [isMobile,setIsMobile] = useState(false)
+  const [isLoggedIn,setIsLoggedIn] = useState(false)
+  
+  const handleViewPortSize = ()=>{
+    window.innerWidth < 800 ? setIsMobile(true) : setIsMobile(false)
+  }
+
+  useEffect(()=>{
+    window.addEventListener('resize',handleViewPortSize)
+  },[])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router>
+        {isLoggedIn ? <Navbar/> : ''}
+        <screenSizeProvider.Provider value={isMobile}>
+          <Routes>
+            <Route path="/" element={isLoggedIn ? <Dashboard/> : <Authentication setIsLoggedIn={setIsLoggedIn}/>}/>
+          </Routes>
+        </screenSizeProvider.Provider>
+      </Router>
   );
 }
 
