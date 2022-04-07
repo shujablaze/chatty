@@ -21,3 +21,6 @@ front-end/chatty/.env.production.local
 front-end/chatty/npm-debug.log*
 front-end/chatty/yarn-debug.log*
 front-end/chatty/yarn-error.log*
+
+back-end/node_modules/
+back-end/.env

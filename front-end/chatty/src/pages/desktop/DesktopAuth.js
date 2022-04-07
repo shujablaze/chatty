@@ -1,8 +1,9 @@
-import React from 'react'
+import { React, useState } from 'react'
 import LoginBar from '../../components/LoginBar'
 import heroImg from '../../hero.jpg'
 import {Drawer, Typography} from '@mui/material'
 import { Box } from '@mui/system'
+import SignupBar from '../../components/SignupBar'
 
 const DesktopAuth = ( {setIsLoggedIn}) => {
 
@@ -12,6 +13,8 @@ const DesktopAuth = ( {setIsLoggedIn}) => {
     backgroundSize : 'cover',
     overflow:'hidden'
   }
+
+  const [isSignup,setIsSignup] = useState(false)
 
   return (
     <>
@@ -38,7 +41,12 @@ const DesktopAuth = ( {setIsLoggedIn}) => {
         variant="permanent"
         anchor="right"
       >
-        <LoginBar setIsLoggedIn={setIsLoggedIn}/>
+        {isSignup ?
+          <SignupBar setIsLoggedIn={setIsLoggedIn} setIsSignup={setIsSignup}/>
+            : 
+          <LoginBar setIsLoggedIn={setIsLoggedIn} setIsSignup={setIsSignup}/>
+        }
+        
       </Drawer>
     </>
   )

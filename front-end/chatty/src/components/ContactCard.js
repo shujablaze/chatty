@@ -6,23 +6,30 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { green } from '@mui/material/colors';
+import { useContext } from 'react'
+import { screenSizeProvider } from '../App'
+import { useNavigate } from 'react-router-dom';
 
-const ContactCard = ({name,message,time}) => {
+const ContactCard = ({ name,message,time,convId }) => {
+  const isMobile = useContext(screenSizeProvider)
+  let style = !isMobile ? {cursor:'pointer','&:hover':{background:green[300]}} : {}
+
+  const navigate = useNavigate()
+
   return (
     <>
-      <ListItem alignItems="flex-start" sx={{cursor:'pointer','&:hover':{background:green[300]}}}>
+      <ListItem alignItems="flex-start" sx={style} onClick={()=>navigate(`/chat/${convId}`)}>
         <ListItemAvatar>
-          <Avatar alt={name} >{name[0]}</Avatar>
+          <Avatar alt={name} ></Avatar>
         </ListItemAvatar>
         <ListItemText
-          primary={name}
+          primary={<div style={{textTransform:'capitalize',fontWeight:'bold'}}>{name}</div>}
           secondary={
             <React.Fragment>
               <Typography
-                sx={{}}
-                component="h4"
-                variant="body2"
                 color="text.primary"
+                component='span'
+                sx={{display:'block'}}
               >
                 {message}
               </Typography>

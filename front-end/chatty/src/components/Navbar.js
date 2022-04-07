@@ -1,39 +1,33 @@
-import { Box,Typography,TextField,InputAdornment,IconButton} from '@mui/material'
+import { Box, Typography, IconButton } from '@mui/material'
 import { green } from '@mui/material/colors'
 import React from 'react'
 import Badge from '@mui/material/Badge';
-import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import Search from './Search';
 
 const Navbar = () => {
   return (
     <Box sx={{
         backgroundColor:green[600],
         height:'8vh',
+        position:'fixed',
         display:'flex',
         alignItems:'center',
+        zIndex : 1000,
+        width:'100vw',
         justifyContent:'space-between'
     }}
     >
         
         <Box sx={{display:'flex',alignItems:'center'}} >
-          <Typography variant="h4" component="h2" sx={{fontFamily:'Eczar',color:'#e4e4e4',ml:5,mr:'10vw'}}>chatty</Typography>
-          <TextField 
-            variant="filled" 
-            sx={{backgroundColor:'white',borderRadius:1,width:'35vw'}}
-            size='small'
-            InputProps={{
-              startAdornment: <InputAdornment position="start"><SearchIcon color={green[400]}/></InputAdornment>
-            }}
-            >
-            
-          </TextField>
+          <Typography variant="h4" component="h2" sx={{fontSize:{md:'1.5rem',xs:'1.2rem',lg:'2.5rem'},fontFamily:'Eczar',color:'#e4e4e4',ml:{md:5,xs:1},mr:{md:'10vw'}}}>chatty</Typography>
         </Box>
+
+        <Search></Search>
         
-        <Box sx={{mr:5}}>
+        <Box sx={{mr:{md:5,xs:1}}}>
         <Box sx={{ display: { xs: 'none', md: 'flex' },color:'#e4e4e4' }}>
             <IconButton
               size="large"
